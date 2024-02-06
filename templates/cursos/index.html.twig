@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cursos index{% endblock %}
+
+{% block body %}
+    <h1>Cursos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha_inicio</th>
+                <th>Fecha_fin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.id }}</td>
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.descripcion }}</td>
+                <td>{{ curso.fechaInicio ? curso.fechaInicio|date('Y-m-d') : '' }}</td>
+                <td>{{ curso.fechaFin ? curso.fechaFin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_cursos_show', {'id': curso.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_cursos_edit', {'id': curso.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No se han encontrado cursos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cursos_new') }}">Añadir un nuevo cursos</a>
+    <a href="{{ path('app_alumnos_index') }}">Ver los alumnos</a>
+{% endblock %}

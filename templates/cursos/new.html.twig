@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevos Cursos{% endblock %}
+
+{% block body %}
+    <h1>Crear nuevos Cursos</h1>
+
+    {{ include('cursos/_form.html.twig') }}
+
+    <a href="{{ path('app_cursos_index') }}">Regresar</a>
+{% endblock %}

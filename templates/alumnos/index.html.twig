@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alumnos index{% endblock %}
+
+{% block body %}
+    <h1>Alumnos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Correo_electrónico</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.id }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.apellidos }}</td>
+                <td>{{ alumno.correoElectronico }}</td>
+                <td>
+                    <a href="{{ path('app_alumnos_show', {'id': alumno.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_alumnos_edit', {'id': alumno.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Sin registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_alumnos_new') }}">Crear nuevo</a>
+    <a href="{{ path('app_cursos_index') }}">Ver los cursos</a>
+{% endblock %}
