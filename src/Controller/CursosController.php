@@ -67,6 +67,23 @@ class CursosController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/{id}/matricular', name: 'app_cursos_matricular', methods: ['GET', 'POST'])]
+    public function matricular(Request $request, Cursos $curso, EntityManagerInterface $entityManager):Response
+    {
+        $form = $this->createForm(CursosType::class, $curso);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_cursos_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('cursos/matricular.html.twig', [
+            'curso' => $curso,
+            'form' => $form,
+        ]);
+    }
 
     #[Route('/{id}', name: 'app_cursos_delete', methods: ['POST'])]
     public function delete(Request $request, Cursos $curso, EntityManagerInterface $entityManager): Response

@@ -6,6 +6,7 @@ use App\Repository\AlumnosRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AlumnosRepository::class)]
 class Alumnos
@@ -16,12 +17,16 @@ class Alumnos
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: "El nombre no puede estar vacío.")]
     private ?string $nombre = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Los apellidos no pueden estar vacíos.")]
     private ?string $apellidos = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: "El correo electrónico no puede estar vacío.")]
+    #[Assert\Email(message: "El correo electrónico '{{ value }}' no es válido.")]
     private ?string $correo_electronico = null;
 
     #[ORM\ManyToMany(targetEntity: Cursos::class, inversedBy: 'alumnos')]
