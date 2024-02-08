@@ -21,6 +21,16 @@ class AlumnosRepository extends ServiceEntityRepository
         parent::__construct($registry, Alumnos::class);
     }
 
+    // Dentro de AlumnosRepository.php
+    public function findAlumnosNoMatriculados(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.cursos', 'c')
+            ->where('c.id IS NULL')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Alumnos[] Returns an array of Alumnos objects
 //     */

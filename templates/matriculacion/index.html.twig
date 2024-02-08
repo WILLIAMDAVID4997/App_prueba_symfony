@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alumnos matriculados{% endblock %}
+
+{% block body %}
+    <h1>Lista de Alumnos</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Cursos Matriculados</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dato in datosMostrar %}
+            <tr>
+                <td>{{ dato.alumno }}</td>
+                <td>{{ dato.curso_matriculado }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

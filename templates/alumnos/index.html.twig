@@ -25,6 +25,7 @@
                 <td>
                     <a href="{{ path('app_alumnos_show', {'id': alumno.id}) }}">Mostrar</a>
                     <a href="{{ path('app_alumnos_edit', {'id': alumno.id}) }}">Editar</a>
+                    <a href="{{ path('app_alumnos_matriculados', {'id': alumno.id}) }}">Dar de alta en curso</a>
                 </td>
             </tr>
         {% else %}
